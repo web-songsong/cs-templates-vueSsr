@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const isProduction = process.env.NODE_ENV === 'production'
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 const nodeExternals = require('webpack-node-externals')
@@ -8,15 +10,19 @@ const TARGET_NODE = process.env.WEBPACK_TARGET === 'node'
 const target = TARGET_NODE ? 'server' : 'client'
 
 const resolve = dir => path.join(__dirname, dir)
-
+const plugins = [
+  TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()
+]
+if (isProduction) {
+  plugins.push(new ExtractTextPlugin({ filename: 'common.[chunkhash].css' }))
+}
 module.exports = {
   css: {
     extract: false
   },
   configureWebpack: () => ({
     entry: `./src/entry-${target}.js`,
-
-    devtool: 'source-map',
+    devtool: !isProduction ? 'source-map' : 'none',
     target: TARGET_NODE ? 'node' : 'web',
     node: false,
     output: {
@@ -28,18 +34,19 @@ module.exports = {
           whitelist: [/\.css$/]
         })
       : undefined,
-    plugins: [TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()]
+    plugins
   }),
   chainWebpack: config => {
     config.resolve.alias
       .set('utils', resolve('src/assets/utils/'))
       .set('api', resolve('src/modules/API.js'))
+
     config.module
       .rule('vue')
       .use('vue-loader')
       .tap(options => {
         merge(options, {
-          optimizeSSR: false,
+          optimizeSSR: true,
           extractCSS: true
         })
       })
