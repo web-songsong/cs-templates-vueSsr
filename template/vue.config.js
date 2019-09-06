@@ -10,11 +10,10 @@ const TARGET_NODE = process.env.WEBPACK_TARGET === 'node'
 const target = TARGET_NODE ? 'server' : 'client'
 
 const resolve = dir => path.join(__dirname, dir)
-
+const plugins = [
+  TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()
+]
 module.exports = {
-  css: {
-    extract: false
-  },
   configureWebpack: config => {
     let plugins = [
       TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()
@@ -50,12 +49,13 @@ module.exports = {
     config.resolve.alias
       .set('utils', resolve('src/assets/utils/'))
       .set('api', resolve('src/modules/API.js'))
+
     config.module
       .rule('vue')
       .use('vue-loader')
       .tap(options => {
         merge(options, {
-          optimizeSSR: false,
+          optimizeSSR: true,
           extractCSS: true
         })
       })
