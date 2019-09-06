@@ -1,7 +1,6 @@
 <template>
   <div class="Activity"
        @click="testHandle">click test api
-
   </div>
 </template>
 <script>
