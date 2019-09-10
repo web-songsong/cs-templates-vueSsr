@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-link to="/activity">to xxxxxx activity</router-link>
+    <router-link to="/activity">to activity</router-link>
     <router-view />
   </div>
 </template>

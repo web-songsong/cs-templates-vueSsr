@@ -13,23 +13,27 @@ module.exports = {
   css: {
     extract: false
   },
-  configureWebpack: () => ({
-    entry: `./src/entry-${target}.js`,
+  configureWebpack: () => {
+    return {
+      entry: `./src/entry-${target}.js`,
 
-    devtool: 'source-map',
-    target: TARGET_NODE ? 'node' : 'web',
-    node: false,
-    output: {
-      libraryTarget: TARGET_NODE ? 'commonjs2' : undefined
-    },
+      devtool: 'source-map',
+      target: TARGET_NODE ? 'node' : 'web',
+      node: false,
+      output: {
+        libraryTarget: TARGET_NODE ? 'commonjs2' : undefined
+      },
 
-    externals: TARGET_NODE
-      ? nodeExternals({
-          whitelist: [/\.css$/]
-        })
-      : undefined,
-    plugins: [TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()]
-  }),
+      externals: TARGET_NODE
+        ? nodeExternals({
+            whitelist: [/\.css$/]
+          })
+        : undefined,
+      plugins: [
+        TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()
+      ]
+    }
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set('utils', resolve('src/assets/utils/'))
