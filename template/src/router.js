@@ -9,7 +9,9 @@ export function createRouter() {
         path: '/activity',
         name: 'activity',
         component: () =>
-          import(/* webpackChunkName: "activity" */ './views/Activity.vue')
+          import(
+            /* webpackChunkName: "activity" */ './views/activity/activity-edit.vue'
+          )
       }
     ]
   })

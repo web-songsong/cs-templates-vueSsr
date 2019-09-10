@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const activity = require('./activity')
+const activity = require('./activity/')
 
 var router = new Router({
   prefix: '/api'

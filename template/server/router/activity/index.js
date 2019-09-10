@@ -2,9 +2,7 @@ const Router = require('koa-router')
 let activity = new Router()
 const koaBodyform = require('../../utils/koa-body-form')
 
-/* api test ： /activity/test */
-activity.post('/test', koaBodyform(), async ctx => {
-  ctx.body = '接口请求成功'
-})
+/* 生成活动模板 ： /activity/generateTemplate */
+activity.post('/generateTemplate', koaBodyform(), require('./generateTemplate'))
 
 module.exports = activity
