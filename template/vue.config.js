@@ -65,5 +65,5 @@ module.exports = {
   },
   filenameHashing: false,
   css: {},
-  indexPath: 'dev.html'
+  indexPath: 'spa'
 }
