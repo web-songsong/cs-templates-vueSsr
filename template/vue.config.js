@@ -34,7 +34,7 @@ module.exports = {
 
     return {
       entry: `./src/entry-${target}.js`,
-      devtool: 'source-map',
+      devtool: 'none',
       target: TARGET_NODE ? 'node' : 'web',
       node: false,
       output: {
@@ -64,5 +64,6 @@ module.exports = {
       })
   },
   filenameHashing: false,
-  css: {}
+  css: {},
+  indexPath: 'dev.html'
 }

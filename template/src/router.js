@@ -12,6 +12,12 @@ export function createRouter() {
           import(
             /* webpackChunkName: "activity" */ './views/activity/activity-edit.vue'
           )
+      },
+      {
+        path: '/',
+        name: 'home',
+        component: () =>
+          import(/* webpackChunkName: "test" */ './views/activity/test.vue')
       }
     ]
   })

@@ -6,8 +6,6 @@
     "build:client": "vue-cli-service build",
     "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --mode server --no-clean",
     "build:ssr": "npm run build:client && npm run build:server",
-    "build:spa": "cd .temFile && NODE_ENV=production vue-cli-service build",
-    "serve:spa": "cd .temFile && vue-cli-service serve",
     "node:server": "NODE_ENV=production node server/app.js",
     "start": "npm run build:ssr && npm run node:server",
     "dev": "node server/app.js",
