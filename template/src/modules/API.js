@@ -1,12 +1,12 @@
 import axios from 'utils/axios'
 
 /**
- * 生成模板文件
+ * test
  *
  * @export
  * @param {*} params
  * @returns
  */
-export function activity_generate_template(params) {
-  return axios.post('/activity/generateTemplate', params)
+export function activity_generate_template() {
+  return axios.get('/activity/generateTemplate')
 }
