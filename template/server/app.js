@@ -3,10 +3,19 @@ const Koa = require('koa')
 const static = require('koa-static')
 const koaBody = require('koa-body')
 const router = require('./router/')
-
+const compress = require('koa-compress')
 const { vue_ssr_pro, vue_ssr_dev } = require('./vue-ssr/')
 
 const app = new Koa()
+app.use(
+  compress({
+    filter: function(content_type) {
+      return /text/i.test(content_type)
+    },
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+  })
+)
 app.use(koaBody())
 
 app.use(router.routes()).use(router.allowedMethods())
