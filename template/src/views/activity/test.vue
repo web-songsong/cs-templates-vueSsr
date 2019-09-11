@@ -1,6 +1,6 @@
 <template>
   <div class="test">
-    testafsdf
+    test
   </div>
 </template>
 
@@ -10,5 +10,6 @@ export default {}
 
 <style lang="less" scoped>
 .test {
+  color: red;
 }
 </style>

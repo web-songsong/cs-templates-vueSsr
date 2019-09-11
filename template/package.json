@@ -1,6 +1,7 @@
 {
-  "name": "ams-ssr",
-  "version": "0.1.0",
+  "name": "{{projectName}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
   "private": true,
   "scripts": {
     "build:client": "vue-cli-service build",
