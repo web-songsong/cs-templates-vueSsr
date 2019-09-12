@@ -12,9 +12,6 @@ const target = TARGET_NODE ? 'server' : 'client'
 const resolve = dir => path.join(__dirname, dir)
 
 module.exports = {
-  css: {
-    extract: false
-  },
   configureWebpack: config => {
     let plugins = [
       TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin()
