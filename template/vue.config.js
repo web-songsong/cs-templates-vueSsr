@@ -31,7 +31,7 @@ module.exports = {
 
     return {
       entry: `./src/entry-${target}.js`,
-      devtool: 'none',
+      devtool: isProduction ? 'none' : 'source-map',
       target: TARGET_NODE ? 'node' : 'web',
       node: false,
       output: {

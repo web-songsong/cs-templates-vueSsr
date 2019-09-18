@@ -1,12 +1,5 @@
 import axios from 'utils/axios'
 
-/**
- * test
- *
- * @export
- * @param {*} params
- * @returns
- */
-export function activity_generate_template() {
-  return axios.get('/activity/generateTemplate')
+export function get_test_list(params) {
+  return axios.get('/test/getList', params)
 }

@@ -1,4 +1,4 @@
-import activity from './activity'
+import testVuex from './test/testVuex'
 export default {
-  activity
+  testVuex
 }
